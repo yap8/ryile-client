@@ -30,7 +30,7 @@
             </nav>
           </v-col>
 
-          <v-col v-if="userStore.userId">
+          <v-col>
             <nav class="side-nav">
               <ul class="side-nav__list">
                 <li v-for="navItem in sideNavItems" class="side-nav__list-item">
@@ -80,6 +80,13 @@ const navItems = [
 ]
 
 const sideNavItems = computed(() => {
+  if (!userStore.userId) {
+    return [{
+      to: '/login',
+      icon: 'mdi-account',
+    }]
+  }
+
   return userStore.isAdmin ? [
     {
       to: '/form',
