@@ -1,16 +1,79 @@
 <template>
   <section>
+    <img class="image" src="/home.jpg" alt="Home">
+
     <div class="container">
-      <h1 class="main-title">HOME</h1>
-  
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum delectus voluptatem sed accusamus repellendus dicta aperiam id voluptas pariatur laudantium iste unde recusandae, commodi nisi ut sapiente iusto aliquid, eaque praesentium quibusdam? Et recusandae, nesciunt iusto deleniti, provident quidem debitis dignissimos tempora corporis suscipit possimus delectus ipsam culpa at blanditiis sint eum quia animi nulla necessitatibus doloremque consequuntur. Laborum voluptatibus fuga accusamus dolorem ipsum ipsam eveniet optio est? Iste molestiae illum quasi aut laudantium beatae nisi consequatur reiciendis distinctio fugit a, inventore necessitatibus quis autem eligendi odio at. Vitae animi ratione facere autem blanditiis ad dolore numquam eaque asperiores aliquid!</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum delectus voluptatem sed accusamus repellendus dicta aperiam id voluptas pariatur laudantium iste unde recusandae, commodi nisi ut sapiente iusto aliquid, eaque praesentium quibusdam? Et recusandae, nesciunt iusto deleniti, provident quidem debitis dignissimos tempora corporis suscipit possimus delectus ipsam culpa at blanditiis sint eum quia animi nulla necessitatibus doloremque consequuntur. Laborum voluptatibus fuga accusamus dolorem ipsum ipsam eveniet optio est? Iste molestiae illum quasi aut laudantium beatae nisi consequatur reiciendis distinctio fugit a, inventore necessitatibus quis autem eligendi odio at. Vitae animi ratione facere autem blanditiis ad dolore numquam eaque asperiores aliquid!</p>
+      <ul class="items">
+        <li v-for="item in items" class="item">
+          <v-row class="item__images">
+            <v-col v-for="image in item.images">
+              <v-img :src="image"></v-img>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col class="d-flex justify-center">
+              <RButton
+                :to="item.to"
+                :text="item.name"
+              ></RButton>
+            </v-col>
+          </v-row>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <script setup>
-  
+import RButton from '@/components/RButton.vue'
+
+const items = [
+  {
+    to: '/items/new',
+    name: 'Новинки',
+    images: [
+      '1.jpg',
+      '2.png',
+      '3.jpg',
+    ],
+  },
+  {
+    to: '/items/clothes',
+    name: 'Одежда',
+    images: [
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+    ],
+  },
+  {
+    to: '/items/jewelry',
+    name: 'Украшения',
+    images: [
+      '12.jpg',
+      '13.jpg',
+      '14.jpg',
+    ],
+  },
+]
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.image {
+  width: 100%;
+  height: 966px;
+  object-fit: cover;
+}
+
+.container {
+  padding: 128px;
+}
+
+.item {
+  margin-bottom: 30px;
+  &__images {
+    margin-bottom: 10px;
+  }
+}
+</style>

@@ -3,7 +3,7 @@
     <RHeader></RHeader>
 
     <v-main>
-      <div style="padding: 60px 0;">
+      <div :style="route.fullPath === '/' ? '' : 'padding: 60px 0;'">
         <RouterView />
       </div>
 
@@ -23,6 +23,10 @@ import RHeader from '@/components/RHeader.vue'
 const route = useRoute()
 
 const mainStore = useMainStore()
+
+onMounted(() => {
+  console.log()
+})
 </script>
 
 <style scoped lang="scss"></style>
