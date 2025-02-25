@@ -1,0 +1,8 @@
+{
+  "current": "test",
+  "url": {
+    "local": "http://localhost:8000/",
+    "test": "http://77.105.172.228/",
+    "prod": "http://192.168.20.63/"
+  }
+}
