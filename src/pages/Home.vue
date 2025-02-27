@@ -14,6 +14,7 @@
           <v-row>
             <v-col class="d-flex justify-center">
               <RButton
+                append-icon="mdi-arrow-right"
                 :to="item.to"
                 :text="item.name"
               ></RButton>
@@ -33,27 +34,27 @@ const items = [
     to: '/items/new',
     name: 'Новинки',
     images: [
-      '1.jpg',
-      '2.png',
-      '3.jpg',
+      'categories/new/1.jpg',
+      'categories/new/2.jpg',
+      'categories/new/3.jpg',
     ],
   },
   {
     to: '/items/clothes',
     name: 'Одежда',
     images: [
-      '4.jpg',
-      '5.jpg',
-      '6.jpg',
+      'categories/clothes/1.jpg',
+      'categories/clothes/2.jpg',
+      'categories/clothes/3.jpg',
     ],
   },
   {
     to: '/items/jewelry',
     name: 'Украшения',
     images: [
-      '12.jpg',
-      '13.jpg',
-      '14.jpg',
+      'categories/jewelry/1.jpg',
+      'categories/jewelry/2.jpg',
+      'categories/jewelry/3.jpg',
     ],
   },
 ]

@@ -52,6 +52,7 @@
 
       <RButton
         text="Сохранить"
+        :class="appStore.isMobile ? 'w-100' : ''"
         :disabled="disabled"
         @click="save"
       ></RButton>
