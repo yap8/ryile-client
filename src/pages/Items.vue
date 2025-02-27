@@ -71,6 +71,10 @@ const title = computed(() => categoriesMap[route.params.category])
   .item {
     width: 100%;
     max-width: 100%;
+
+    &__img {
+      height: 350px;
+    }
   }
 }
 </style>

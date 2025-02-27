@@ -5,11 +5,13 @@
 
       <form>
         <v-row>
-          <v-col>
+          <v-col v-if="!appStore.isMobile">
             <h2>Данные аккаунта</h2>
           </v-col>
 
           <v-col>
+            <h2 v-if="appStore.isMobile" class="mb-4">Данные аккаунта</h2>
+
             <v-row>
               <v-col>
                 <RInput
@@ -41,6 +43,7 @@
         <v-row>
           <v-col class="d-flex justify-center">
             <RButton
+              :class="appStore.isMobile ? 'w-100 mb-4' : 'mb-4'"
               text="Изменить"
               @click="onSave"
             ></RButton>
@@ -60,6 +63,9 @@ import { ref } from 'vue'
 import { colors } from '@/constants/colors'
 import RInput from '@/components/RInput.vue'
 import RButton from '@/components/RButton.vue'
+import { useAppStore } from '@/store/app'
+
+const appStore = useAppStore()
 
 const user = ref({
   firstName: 'Test',
