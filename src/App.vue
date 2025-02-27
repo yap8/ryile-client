@@ -3,7 +3,9 @@
     <RHeader></RHeader>
 
     <v-main>
-      <div :style="route.fullPath === '/' ? '' : 'padding: 60px 0;'">
+      <div
+        :style="route.fullPath === '/' ? '' : `padding: ${appStore.isMobile ? 30 : 60}px 0;`"
+      >
         <RouterView />
       </div>
 
@@ -14,19 +16,14 @@
 
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
-import { useMainStore } from './store/main'
-import { computed, onMounted, ref, watch } from 'vue'
 import { api } from './api';
 import RFooter from '@/components/RFooter.vue'
 import RHeader from '@/components/RHeader.vue'
+import { useAppStore } from './store/app';
 
 const route = useRoute()
 
-const mainStore = useMainStore()
-
-onMounted(() => {
-  console.log()
-})
+const appStore = useAppStore()
 </script>
 
 <style scoped lang="scss"></style>

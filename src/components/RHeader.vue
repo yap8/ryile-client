@@ -4,65 +4,99 @@
     :height="height"
     :elevation="0"
     :order="-1"
-    >
-      <div class="container">
-        <v-row>
-          <v-col>
-            <RLogo></RLogo>
-          </v-col>
+  >
+    <div class="container">
+      <v-row>
+        <v-col v-if="userStore.userId && appStore.isMobile" class="d-flex align-center">
+          <v-app-bar-nav-icon
+            variant="text"
+            @click.stop="showDrawer = !showDrawer"
+          ></v-app-bar-nav-icon>
+        </v-col>
 
-          <v-col v-if="userStore.userId">
-            <nav class="nav">
-              <ul class="nav__list">
-                <li
-                  v-for="navItem in navItems"
-                  class="nav__list-item"
+        <v-col>
+          <RLogo></RLogo>
+        </v-col>
+
+        <v-col v-if="userStore.userId && !appStore.isMobile">
+          <nav class="nav">
+            <ul class="nav__list">
+              <li
+                v-for="navItem in navItems"
+                class="nav__list-item"
+              >
+                <RouterLink
+                  class="nav__link"
+                  :to="navItem.to"
+                  :style="{ color: colors.black }"
                 >
-                  <RouterLink
-                    class="nav__link"
-                    :to="navItem.to"
+                  {{ navItem.text }}
+                </RouterLink>
+              </li>
+            </ul>
+          </nav>
+        </v-col>
+
+        <v-col>
+          <nav class="side-nav">
+            <ul class="side-nav__list">
+              <li v-for="navItem in sideNavItems" class="side-nav__list-item">
+                <RouterLink
+                  class="side-nav__link"
+                  :to="navItem.to"
+                >
+                  <v-icon
+                    class="side-nav__icon"
+                    height="28"
                     :style="{ color: colors.black }"
                   >
-                    {{ navItem.text }}
-                  </RouterLink>
-                </li>
-              </ul>
-            </nav>
-          </v-col>
+                    {{ navItem.icon }}
+                  </v-icon>
+                </RouterLink>
+              </li>
+            </ul>
+          </nav>
+        </v-col>
+      </v-row>
+    </div>
+  </v-app-bar>
 
-          <v-col>
-            <nav class="side-nav">
-              <ul class="side-nav__list">
-                <li v-for="navItem in sideNavItems" class="side-nav__list-item">
-                  <RouterLink
-                    class="side-nav__link"
-                    :to="navItem.to"
-                  >
-                    <v-icon
-                      class="side-nav__icon"
-                      height="28"
-                      :style="{ color: colors.black }"
-                    >
-                      {{ navItem.icon }}
-                    </v-icon>
-                  </RouterLink>
-                </li>
-              </ul>
-            </nav>
-          </v-col>
-        </v-row>
-      </div>
-    </v-app-bar>
+  <v-navigation-drawer
+    v-if="appStore.isMobile"
+    v-model="showDrawer"
+    temporary
+    :color="colors.layout"
+  >
+    <nav class="nav">
+      <ul class="nav__list nav__list--mobile">
+        <li
+          v-for="navItem in navItems"
+          class="nav__list-item"
+        >
+          <RouterLink
+            class="nav__link"
+            :to="navItem.to"
+            :style="{ color: colors.black }"
+          >
+            {{ navItem.text }}
+          </RouterLink>
+        </li>
+      </ul>
+    </nav>
+  </v-navigation-drawer>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { colors } from '@/constants/colors'
-import logoSVG from '@/assets/logo.svg'
+import { useAppStore } from '@/store/app'
 import { useUserStore } from '@/store/user'
 import RLogo from '@/components/RLogo.vue'
 
+const appStore = useAppStore()
 const userStore = useUserStore()
+
+const showDrawer = ref(false)
 
 const navItems = [
   {
@@ -109,7 +143,7 @@ const sideNavItems = computed(() => {
 })
 
 const height = computed(() => {
-  const value = 172
+  const value = appStore.isMobile ? 102 : 172
 
   return value
 })
@@ -125,6 +159,12 @@ const height = computed(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    &--mobile {
+      max-width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
   }
 
   &__list-item {

@@ -108,4 +108,11 @@ const title = computed(() => categoriesMap[route.params.category])
     margin-bottom: 10px;
   }
 }
+
+@media (max-width: 1200px) {
+  .item {
+    width: 100%;
+    max-width: 100%;
+  }
+}
 </style>

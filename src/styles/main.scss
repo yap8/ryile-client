@@ -32,3 +32,9 @@ a {
   text-transform: uppercase;
   margin-bottom: 80px;
 }
+
+@media (max-width: 1200px) {
+  .main-title {
+    margin-bottom: 30px;
+  }
+}
