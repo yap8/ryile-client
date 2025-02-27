@@ -33,55 +33,13 @@ import { ref, computed } from 'vue'
 import { categoriesMap } from '@/constants/categories'
 import { useCartStore } from '@/store/cart'
 import RButton from '@/components/RButton.vue'
+import mockItems from '@/data/items'
 
 const cartStore = useCartStore()
 
 const route = useRoute()
 
-const items = {
-  clothes: [
-    {
-      id: 1,
-      title: 'Одежда 1',
-      img: '/1.jpg',
-      price: '10000 руб',
-    },
-    {
-      id: 2,
-      title: 'Одежда 2',
-      img: '/3.jpg',
-      price: '20000 руб',
-    },
-    {
-      id: 3,
-      title: 'Одежда 3',
-      img: '/4.jpg',
-      price: '10000 руб',
-    },
-  ],
-  jewelry: [
-    {
-      id: 4,
-      title: 'Украшение 1',
-      img: '/13.jpg',
-      price: '100000000 руб',
-    },
-    {
-      id: 5,
-      title: 'Украшение 2',
-      img: '/e.png',
-      price: '1 руб',
-    },
-  ],
-  new: [
-    {
-      id: 6,
-      title: 'Новинка 1',
-      img: '/9.jpg',
-      price: '100 руб'
-    }
-  ],
-}
+const items = mockItems
 
 const title = computed(() => categoriesMap[route.params.category])
 </script>
