@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "clothes",
+    "nameRu": "одежда"
+  },
+  {
+    "id": 2,
+    "name": "jewelry",
+    "nameRu": "украшения"
+  },
+  {
+    "id": 3,
+    "name": "new",
+    "nameRu": "новинки"
+  }
+]

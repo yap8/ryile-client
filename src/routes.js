@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAppStore } from './store/app'
 
 const routes = [
   {
@@ -23,7 +24,7 @@ const routes = [
   },
   {
     path: '/item/:id',
-    component: () => import('@/pages/Item.vue'),
+    component: () => import('@/pages/ItemForm.vue'),
   },
   {
     path: '/profile',
@@ -43,5 +44,9 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
+
+// router.beforeEach(async (to, from) => {
+//   const appStore = useAppStore()
+// })
 
 export default router

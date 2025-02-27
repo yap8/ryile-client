@@ -7,7 +7,7 @@
   >
     <div class="container">
       <v-row>
-        <v-col v-if="userStore.userId && appStore.isMobile" class="d-flex align-center">
+        <v-col v-if="appStore.userId && appStore.isMobile" class="d-flex align-center">
           <v-app-bar-nav-icon
             variant="text"
             @click.stop="showDrawer = !showDrawer"
@@ -18,7 +18,7 @@
           <RLogo></RLogo>
         </v-col>
 
-        <v-col v-if="userStore.userId && !appStore.isMobile">
+        <v-col v-if="appStore.userId && !appStore.isMobile">
           <nav class="nav">
             <ul class="nav__list">
               <li
@@ -90,11 +90,9 @@
 import { ref, computed } from 'vue'
 import { colors } from '@/constants/colors'
 import { useAppStore } from '@/store/app'
-import { useUserStore } from '@/store/user'
 import RLogo from '@/components/RLogo.vue'
 
 const appStore = useAppStore()
-const userStore = useUserStore()
 
 const showDrawer = ref(false)
 
@@ -114,16 +112,16 @@ const navItems = [
 ]
 
 const sideNavItems = computed(() => {
-  if (!userStore.userId) {
+  if (!appStore.userId) {
     return [{
       to: '/login',
       icon: 'mdi-account',
     }]
   }
 
-  return userStore.isAdmin ? [
+  return appStore.isAdmin ? [
     {
-      to: '/form',
+      to: '/item/create',
       icon: 'mdi-cog',
     },
     {

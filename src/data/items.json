@@ -1,44 +1,68 @@
-{
-  "clothes": [
-    {
+[
+  {
+    "id": 1,
+    "title": "Одежда 1",
+    "img": "/1.jpg",
+    "price": "10000",
+    "category": {
       "id": 1,
-      "title": "Одежда 1",
-      "img": "/1.jpg",
-      "price": "10000"
-    },
-    {
+      "name": "clothes",
+      "nameRu": "одежда"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Одежда 2",
+    "img": "/3.jpg",
+    "price": "20000",
+    "category": {
+      "id": 1,
+      "name": "clothes",
+      "nameRu": "одежда"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Одежда 3",
+    "img": "/4.jpg",
+    "price": "10000",
+    "category": {
+      "id": 1,
+      "name": "clothes",
+      "nameRu": "одежда"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Украшение 1",
+    "img": "/13.jpg",
+    "price": "100000000",
+    "category": {
       "id": 2,
-      "title": "Одежда 2",
-      "img": "/3.jpg",
-      "price": "20000"
-    },
-    {
+      "name": "jewelry",
+      "nameRu": "украшения"
+    }
+  },
+  {
+    "id": 5,
+    "title": "Украшение 2",
+    "img": "/e.png",
+    "price": "1",
+    "category": {
+      "id": 2,
+      "name": "jewelry",
+      "nameRu": "украшения"
+    }
+  },
+  {
+    "id": 6,
+    "title": "Новинка 1",
+    "img": "/9.jpg",
+    "price": "100",
+    "category": {
       "id": 3,
-      "title": "Одежда 3",
-      "img": "/4.jpg",
-      "price": "10000"
+      "name": "new",
+      "nameRu": "новинки"
     }
-  ],
-  "jewelry": [
-    {
-      "id": 4,
-      "title": "Украшение 1",
-      "img": "/13.jpg",
-      "price": "100000000"
-    },
-    {
-      "id": 5,
-      "title": "Украшение 2",
-      "img": "/e.png",
-      "price": "1"
-    }
-  ],
-  "new": [
-    {
-      "id": 6,
-      "title": "Новинка 1",
-      "img": "/9.jpg",
-      "price": "100"
-    }
-  ]
-}
+  }
+]

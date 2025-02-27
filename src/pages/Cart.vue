@@ -66,8 +66,7 @@ const totalPrice = computed(() => items.value.reduce((acc, curr) => Number(acc) 
 
 
 onMounted(() => {
-  Object.values(mockItems).forEach((items) => allItems.value.push(...items))
-  console.log
+  allItems.value = mockItems
 })
 </script>
 

@@ -4,7 +4,7 @@
       <h1 class="main-title">{{ title }}</h1>
 
       <ul class="items">
-        <li v-for="item in items[route.params.category]" class="item">
+        <li v-for="item in items" class="item">
           <v-img class="item__img" :src="item.img" cover></v-img>
 
           <h3 class="item__title">{{ item.title }}</h3>
@@ -16,6 +16,13 @@
 
             <v-col class="d-flex justify-end">
               <RButton
+                v-if="appStore.isAdmin"
+                text="Редактировать"
+                @click="router.push(`/item/${item.id}`)"
+              ></RButton>
+
+              <RButton
+                v-else
                 text="Добавить в корзину"
                 @click="cartStore.add(item.id)"
               ></RButton>
@@ -28,20 +35,29 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
-import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { ref, computed, watch } from 'vue'
 import { categoriesMap } from '@/constants/categories'
-import { useCartStore } from '@/store/cart'
 import RButton from '@/components/RButton.vue'
 import mockItems from '@/data/items'
+import { useCartStore } from '@/store/cart'
+import { useAppStore } from '@/store/app'
 
 const cartStore = useCartStore()
+const appStore = useAppStore()
 
 const route = useRoute()
+const router = useRouter()
 
-const items = mockItems
+const items = ref([])
 
 const title = computed(() => categoriesMap[route.params.category])
+
+watch(() => route.params.category, () => {
+  items.value = mockItems.filter((item) => item.category.name === route.params.category)
+}, {
+  immediate: true,
+})
 </script>
 
 <style lang="scss" scoped>
