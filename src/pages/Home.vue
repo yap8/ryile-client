@@ -62,7 +62,7 @@ const items = [
 <style lang="scss" scoped>
 .image {
   width: 100%;
-  height: 966px;
+  height: 800px;
   object-fit: cover;
 }
 
@@ -74,6 +74,16 @@ const items = [
   margin-bottom: 30px;
   &__images {
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .image {
+    height: 400px;
+  }
+
+  .container {
+    padding: 0;
   }
 }
 </style>
