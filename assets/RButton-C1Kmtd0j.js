@@ -1,0 +1,1 @@
+import{_ as s,e as c,o as r,u as a,i as l,b as _}from"./index-Cjyw_Vns.js";const i={__name:"RButton",emits:["click"],setup(p,{emit:o}){const e=o;return(m,t)=>{const n=_("v-btn");return r(),c(n,{class:"r-button",height:"44",variant:"flat",color:a(l).black,onClick:t[0]||(t[0]=u=>e("click"))},null,8,["color"])}}},f=s(i,[["__scopeId","data-v-e03fbe52"]]);export{f as R};
