@@ -5,7 +5,7 @@ import { useWindowSize } from '@vueuse/core'
 export const useAppStore = defineStore('app', () => {
   const user = ref({
     id: 1,
-    isAdmin: true,
+    isAdmin: false,
   })
 
   const { width } = useWindowSize()
