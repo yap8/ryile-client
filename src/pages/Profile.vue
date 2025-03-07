@@ -59,26 +59,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { colors } from '@/constants/colors'
 import RInput from '@/components/RInput.vue'
 import RButton from '@/components/RButton.vue'
 import { useAppStore } from '@/store/app'
+import { api } from '@/api'
 
 const router = useRouter()
 
 const appStore = useAppStore()
 
-const user = ref({
-  firstName: 'Test',
-  lastName: 'Testov',
-  patronimyc: 'Testovich',
-  email: 'test@test.ru',
-})
+const user = ref({})
 
-const onSave = () => {
-  console.log('SAVE')
+const onSave = async () => {
+  try {
+    await api.patch(`api/users/${appStore.user.user_id}`, {
+      first_name: user.value.firstName,
+      last_name: user.value.lastName,
+      patronymic: user.value.patronimyc,
+      email: user.value.email,
+    })
+
+    await appStore.init()
+
+    alert('Данные обновлены!')
+  } catch (error) {
+    console.error(error.message)
+    alert('Ошибка!')
+  }
 }
 
 const onLogout = () => {
@@ -86,6 +96,17 @@ const onLogout = () => {
 
   router.push('/login')
 }
+
+onMounted(async () => {
+  await appStore.init()
+
+  user.value = {
+    firstName: appStore.user.first_name,
+    lastName: appStore.user.last_name,
+    patronimyc: appStore.user.patronimyc,
+    email: appStore.user.email,
+  }
+})
 </script>
 
 <style lang="scss" scoped></style>

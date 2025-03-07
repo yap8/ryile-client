@@ -30,7 +30,8 @@ export const useAppStore = defineStore('app', () => {
         user.value = result.data
       }
     } catch (error) {
-      
+      console.error(error.message)
+      user.value = null
     }
   }
 
