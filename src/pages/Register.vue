@@ -51,10 +51,12 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
-import { colors } from '@/constants/colors'
+import { useRouter } from 'vue-router'
 import RInput from '@/components/RInput.vue'
 import RButton from '@/components/RButton.vue'
+import { api } from '@/api'
+
+const router = useRouter()
 
 const firstName = ref('')
 const lastName = ref('')
@@ -74,8 +76,26 @@ const disabled = computed(() => {
   return !values.every((value) => value)
 })
 
-const onSubmit = () => {
+const onSubmit = async () => {
+  try {
+    const result = await api.post('api/users', {
+      "first_name": firstName.value,
+      "last_name": lastName.value,
+      "patronymic": patronimyc.value,
+      "email": email.value,
+      "password": password.value,
+    })
 
+    if (result?.data) {
+      router.push('/login')
+
+      alert('Пользователь создан успешно')
+    } else {
+      alert('Ошибка!')
+    }
+  } catch (error) {
+    console.error(error.message)
+  }
 }
 </script>
 

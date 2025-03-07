@@ -15,8 +15,8 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import { RouterView, useRoute } from 'vue-router'
-import { api } from './api';
 import RFooter from '@/components/RFooter.vue'
 import RHeader from '@/components/RHeader.vue'
 import { useAppStore } from './store/app';
@@ -24,6 +24,8 @@ import { useAppStore } from './store/app';
 const route = useRoute()
 
 const appStore = useAppStore()
+
+onMounted(() => appStore.init())
 </script>
 
 <style scoped lang="scss"></style>

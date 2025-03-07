@@ -45,8 +45,14 @@ const router = createRouter({
   routes,
 })
 
-// router.beforeEach(async (to, from) => {
-//   const appStore = useAppStore()
-// })
+router.beforeEach(async (to, from) => {
+  if (!localStorage.getItem('token') && to.path !== '/login') {
+    return to.path === '/register' ? true : '/login'
+  }
+
+  if (localStorage.getItem('token') && to.path === '/login') {
+    return '/'
+  }
+})
 
 export default router

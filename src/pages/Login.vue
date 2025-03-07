@@ -38,10 +38,15 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { colors } from '@/constants/colors'
 import RInput from '@/components/RInput.vue'
 import RButton from '@/components/RButton.vue'
+import { useAppStore } from '@/store/app'
+
+const router = useRouter()
+
+const appStore = useAppStore()
 
 const email = ref('')
 const password = ref('')
@@ -55,8 +60,12 @@ const disabled = computed(() => {
   return !values.every((value) => value)
 })
 
-const onSubmit = () => {
-  console.log(email, password)
+const onSubmit = async () => {
+  const success = await appStore.login(email.value, password.value)
+
+  if (success) {
+    router.push('/')
+  }
 }
 </script>
 

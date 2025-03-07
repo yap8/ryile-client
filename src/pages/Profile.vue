@@ -53,17 +53,20 @@
 
       <!-- <RouterLink to="/history" :style="{ color: colors.black }">Мои заказы</RouterLink> -->
 
-      <button :style="{ color: colors.error }">Выйти из аккаунта</button>
+      <button :style="{ color: colors.error }" @click="onLogout">Выйти из аккаунта</button>
     </div>
   </section>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { colors } from '@/constants/colors'
 import RInput from '@/components/RInput.vue'
 import RButton from '@/components/RButton.vue'
 import { useAppStore } from '@/store/app'
+
+const router = useRouter()
 
 const appStore = useAppStore()
 
@@ -76,6 +79,12 @@ const user = ref({
 
 const onSave = () => {
   console.log('SAVE')
+}
+
+const onLogout = () => {
+  appStore.logout()
+
+  router.push('/login')
 }
 </script>
 
