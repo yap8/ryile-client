@@ -25,7 +25,7 @@
                 ></RInput>
 
                 <RInput
-                  v-model="user.patronimyc"
+                  v-model="user.patronymic"
                   label="Отчество"
                 ></RInput>
               </v-col>
@@ -78,11 +78,11 @@ const onSave = async () => {
     await api.patch(`api/users/${appStore.user.user_id}`, {
       first_name: user.value.firstName,
       last_name: user.value.lastName,
-      patronymic: user.value.patronimyc,
+      patronymic: user.value.patronymic,
       email: user.value.email,
     })
 
-    await appStore.init()
+    await appStore.loadUser()
 
     alert('Данные обновлены!')
   } catch (error) {
@@ -98,12 +98,12 @@ const onLogout = () => {
 }
 
 onMounted(async () => {
-  await appStore.init()
+  await appStore.loadUser()
 
   user.value = {
     firstName: appStore.user.first_name,
     lastName: appStore.user.last_name,
-    patronimyc: appStore.user.patronimyc,
+    patronymic: appStore.user.patronymic,
     email: appStore.user.email,
   }
 })

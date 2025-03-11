@@ -39,7 +39,7 @@
     "price": "100000000",
     "category": {
       "id": 2,
-      "name": "jewelry",
+      "name": "jewellery",
       "nameRu": "украшения"
     }
   },
@@ -50,7 +50,7 @@
     "price": "1",
     "category": {
       "id": 2,
-      "name": "jewelry",
+      "name": "jewellery",
       "nameRu": "украшения"
     }
   },

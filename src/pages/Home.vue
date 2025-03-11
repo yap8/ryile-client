@@ -49,7 +49,7 @@ const items = [
     ],
   },
   {
-    to: '/items/jewelry',
+    to: '/items/jewellery',
     name: 'Украшения',
     images: [
       'categories/jewelry/1.jpg',

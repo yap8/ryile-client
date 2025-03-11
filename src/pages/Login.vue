@@ -65,6 +65,8 @@ const onSubmit = async () => {
 
   if (success) {
     router.push('/')
+  } else {
+    alert('Данные введены неверно')
   }
 }
 </script>

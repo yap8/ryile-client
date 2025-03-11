@@ -21,7 +21,7 @@
 
           <v-col>
             <RInput
-              v-model="patronimyc"
+              v-model="patronymic"
               label="Отчество"
             ></RInput>
           </v-col>
@@ -60,7 +60,7 @@ const router = useRouter()
 
 const firstName = ref('')
 const lastName = ref('')
-const patronimyc = ref('')
+const patronymic = ref('')
 
 const email = ref('')
 const password = ref('')
@@ -81,7 +81,7 @@ const onSubmit = async () => {
     const result = await api.post('api/users', {
       "first_name": firstName.value,
       "last_name": lastName.value,
-      "patronymic": patronimyc.value,
+      "patronymic": patronymic.value,
       "email": email.value,
       "password": password.value,
     })

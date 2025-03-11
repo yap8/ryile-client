@@ -102,7 +102,7 @@ const navItems = [
     text: 'Одежда',
   },
   {
-    to: '/items/jewelry',
+    to: '/items/jewellery',
     text: 'Украшения',
   },
   {
@@ -161,7 +161,7 @@ const height = computed(() => {
     &--mobile {
       max-width: 100%;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-around;
     }
   }
 

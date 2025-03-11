@@ -2,11 +2,13 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useWindowSize } from '@vueuse/core'
 import { api } from '@/api'
+import { useCategoryStore } from './category'
 
 export const useAppStore = defineStore('app', () => {
   const user = ref(null)
 
   const { width } = useWindowSize()
+  const categoryStore = useCategoryStore()
 
   const userId = computed(() => user.value?.user_id)
 
@@ -15,10 +17,11 @@ export const useAppStore = defineStore('app', () => {
   const isMobile = computed(() => width.value <= 1200)
 
   const init = async () => {
-    loadCurrentUser()
+    loadUser()
+    categoryStore.load()
   }
 
-  const loadCurrentUser = async () => {
+  const loadUser = async () => {
     try {
       const token = localStorage.getItem('token') ?? null
   
@@ -46,7 +49,7 @@ export const useAppStore = defineStore('app', () => {
         localStorage.setItem('token', result.data)
       }
 
-      loadCurrentUser()
+      init()
 
       return result.data ?? null
     } catch (error) {
@@ -67,6 +70,7 @@ export const useAppStore = defineStore('app', () => {
     isAdmin,
     isMobile,
     init,
+    loadUser,
     login,
     logout,
   }

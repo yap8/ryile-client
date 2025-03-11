@@ -1,5 +1,5 @@
 export const categoriesMap = {
   clothes: 'одежда',
-  jewelry: 'украшения',
+  jewellery: 'украшения',
   new: 'новинки',
 }
